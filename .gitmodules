@@ -1,6 +1,0 @@
-[submodule "thirdparty/Roy_VnTokenizer"]
-	path = thirdparty/Roy_VnTokenizer
-	url = git@github.com:DethRaid/Roy_VnTokenizer.git
-[submodule "fastText"]
-	path = fastText
-	url = https://github.com/facebookresearch/fastText.git

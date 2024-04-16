@@ -169,8 +169,8 @@ class Space(object):
 
         #get the number of columns
         with open(fname) as f:
-            f.readline()
-            ncols = len(f.readline().split())
+            f.readline(5_000_000)
+            ncols = len(f.readline(5_000_000).split())
 
         logger.debug('Working with %d columns' % ncols)
 

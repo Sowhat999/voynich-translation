@@ -6,7 +6,7 @@ file so that human can generate their translations
 """
 
 import logging
-import random
+import secrets
 
 
 if __name__ == '__main__':
@@ -22,7 +22,7 @@ if __name__ == '__main__':
 
     logger.info('Spanish file read in')
 
-    random.shuffle(lines)
+    secrets.SystemRandom().shuffle(lines)
     spanish_vocab = lines[:5000]
     logger.info('Shuffled Spanish words and got the first 5K')
 

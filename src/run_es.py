@@ -5,12 +5,12 @@ import sys
 import logging
 import collections
 import multiprocessing
-from random import shuffle
 
 from transmat.space import Space
 from transmat.utils import train_tm, apply_tm
 from spanish.train import __train_model, __get_anchor_words, __evaluate_translation
 from gensim.models import Word2Vec
+import secrets
 
 
 logging.basicConfig(filename='all.log', level=logging.DEBUG)
@@ -115,7 +115,7 @@ def run_spanish_test():
     step = 7000 / num_threads
     step = 10    # Use a small amount of data to test things
     # Start a bunch of threads to handle translating different parts of the Spanish space
-    shuffle(spanish_words)
+    secrets.SystemRandom().shuffle(spanish_words)
     for i in range(num_threads):
         single_gold = multiprocessing.Queue()
         thread_results.append(single_gold)

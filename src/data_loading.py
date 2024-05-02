@@ -2,6 +2,7 @@ import codecs
 import functools
 import logging
 import os
+import secrets
 
 _log = logging.getLogger('data_loading')
 
@@ -114,8 +115,7 @@ def _get_n_words(raw_data, num_words):
     cur_num_words = 0
 
     while cur_num_words < num_words:
-        import random
-        line_num = random.randint(0, len(lines) - 1)
+        line_num = secrets.SystemRandom().randint(0, len(lines) - 1)
         line = lines[line_num].split()
         if len(line) == 0:
             continue

@@ -13,6 +13,7 @@ from nltk import sent_tokenize
 
 from src.stats.aggregate_stats import aggregate_stats
 from src.stats.markov_chain import calc_entropy
+import secrets
 
 _log = logging.getLogger('morpho_stats')
 
@@ -143,8 +144,7 @@ def _get_n_words(raw_data, num_words):
     cur_num_words = 0
 
     while cur_num_words < num_words:
-        import random
-        line_num = random.randint(0, len(lines) - 1)
+        line_num = secrets.SystemRandom().randint(0, len(lines) - 1)
         line = lines[line_num].split()
         if len(line) == 0:
             continue

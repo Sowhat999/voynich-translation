@@ -13,6 +13,7 @@ from nltk import sent_tokenize
 
 from src.stats.aggregate_stats import aggregate_stats
 from src.stats.markov_chain import calc_entropy
+from security import safe_command
 
 _log = logging.getLogger('morpho_stats')
 
@@ -275,7 +276,7 @@ class LanguageStats:
 
         self._log.info('Segmenting words...')
         import subprocess
-        returncode = subprocess.call('make --makefile=morfessor_catmap0.9.2/train/Makefile GZIPPEDINPUTDATA=%s BINDIR=morfessor_catmap0.9.2/bin' % catmap_input_filename, shell=True)
+        returncode = safe_command.run(subprocess.call, 'make --makefile=morfessor_catmap0.9.2/train/Makefile GZIPPEDINPUTDATA=%s BINDIR=morfessor_catmap0.9.2/bin' % catmap_input_filename, shell=True)
         if returncode != 0:
             self._log.fatal('Could not generate morphs')
             exit(returncode)

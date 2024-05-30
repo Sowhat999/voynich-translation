@@ -15,6 +15,7 @@ from enum import Enum
 
 from gensim.models import Word2Vec
 from gensim.models.wrappers import FastText
+from security import safe_command
 
 _log = logging.getLogger('embeddings')
 
@@ -146,7 +147,7 @@ class LanguageModel:
 
         _log.info('Segmenting words...')
         if not force:
-            returncode = subprocess.call('make --makefile=morfessor_catmap0.9.2/train/Makefile GZIPPEDINPUTDATA=%s BINDIR=morfessor_catmap0.9.2/bin' % catmap_input_filename, shell=True)
+            returncode = safe_command.run(subprocess.call, 'make --makefile=morfessor_catmap0.9.2/train/Makefile GZIPPEDINPUTDATA=%s BINDIR=morfessor_catmap0.9.2/bin' % catmap_input_filename, shell=True)
             if returncode != 0:
                 _log.fatal('Could not generate morphs')
                 exit(returncode)
